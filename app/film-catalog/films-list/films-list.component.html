@@ -1,0 +1,39 @@
+<mat-card class="menu-card">
+    <mat-toolbar class="menu-toolbar">
+        <mat-toolbar-row>
+            <span>В избранное добавлено: {{favoritesCount}} элементов</span>
+            <span class="example-spacer"></span>
+            <div>
+                <mat-form-field>
+                    <mat-select placeholder="Сортировка" (selectionChange)="sortFilms($event)">
+                        <mat-option [value]="sortingOption.value " *ngFor="let sortingOption of sortingOptions ">
+                            {{sortingOption.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-toolbar class="search-toolbar">
+        <mat-toolbar-row>
+            <div class="films-search">
+                <mat-form-field>
+                    <input matInput placeholder="Поиск фильма по имени ">
+                </mat-form-field>
+            </div>
+            <div class="films-search-toggle">
+                <button mat-button (click)="toggleSearch()">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
+        </mat-toolbar-row>
+        
+    </mat-toolbar>
+
+    
+</mat-card>
+<div class="films-cards" >
+    <app-film-item [film]="film " *ngFor="let film of films " (changeFavorite)="updateFavorites($event)">
+    </app-film-item>
+</div>
